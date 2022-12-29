@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "80:80"
+    environment:
+      - BACKEND_URL=https://34.107.151.22
+    depends_on:
+      - backend
+  backend:
+    build: ./Backend
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGO_DB_CONNECTION_STRING=REDACTED
+      - MONGO_DB_NAME=evac
+      - REDIS_URI=redis://10.168.76.155
+
